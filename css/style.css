@@ -1,0 +1,65 @@
+/* Font for sidebar (in case it's not installed)*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+/* Stuff that needs to affect the whole page */
+body {
+    background-image: url('https://wilburwilliams.uk/assets/background.png');
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    font-family: 'Calibri', sans-serif;
+}
+
+a {
+    color: lightblue;
+}
+
+/* All main content areas */
+.main {
+    font-size: large;
+}
+
+
+/* The sidebar menu */
+.sidenav {
+    height: 100%;
+    width: 10%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+    margin-left: 12%;
+    padding: 0px 10px;
+    color: white;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
