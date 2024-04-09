@@ -1,0 +1,47 @@
+body {
+background-color: #18344c;
+font-family: Verdana;
+color: white
+}
+
+button {
+  border:none;
+  background-color:#0f2638;
+  border-radius:18px;
+  color:white;
+}
+
+#counter {
+  text-align: right;
+  float: right;
+  font-size: larger;
+}
+
+#downSave, #upSave {
+  float: center;
+}
+
+#cookieBtn {
+  width: 50%;
+  float: left;
+}
+
+#buyBtn {
+  width:25%;
+  height:100px;
+  float: right;
+}
+
+#pro {
+  width:50px;
+  height:50px;
+  background-color:#1a3f5e;
+}
+
+#cookieImg {
+  width: 50%;
+}
+
+#messages {
+  float: left;
+}

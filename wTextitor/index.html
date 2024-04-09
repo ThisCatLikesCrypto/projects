@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wTextitor</title>
+    <link rel="icon" type="image/x-icon" href="icon.png">
+    <link href="quill/quill.snow.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="katex/katex.min.css">
+  <body>
+    <script src="katex/katex.min.js"></script>
+    <script src="quill/quill.js"></script>
+    <script src="script.js"></script>
+    <h1 id="mainheader" onclick="alert('Stands for Wilbur Text Editor')">wTextitor v0.2.1c</h1>
+    <button class="normalbutton" onclick="saveLocal()">Save</button>
+    <button class="normalbutton" onclick="dlSave()">dlSave</button>
+    <button class="normalbutton" onclick="upSave()">upSave</button>
+    <button class="normalbutton" id="foc" onclick="focusMode()">Focus Mode</button>
+    <button class="normalbutton" id="unfoc" onclick="unfocus()">Remove Focus Mode</button>
+    <button class="normalbutton tooltip" onclick="quilltoHTML()">Convert to HTML</button>
+    <div id="editor">
+      <p>Write text here...</p>
+    </div>
+    <div id="infobar">
+      <h3 id="charcount">&nbsp;&nbsp;Characters: loading...</h3>
+      <br>
+    </div>
+    <br><br><br><br><br>
+    <div id="info">
+      <h1 id="infoh1">What is this?</h1>
+      <p id="infop1">This is a simple webapp that, using the <a href="https://quilljs.com" onmouseover="alert('2.0.0-rc.4, if you were wondering')">Quill Library</a> (and <a href="https://katex.org/">KaTeX</a>), allows you to write text, and saves to local storage every ten seconds (trigger a manual save by pressing 'Save' in the toolbar.).</p>
+      <p id="infop2">In beta; not much is included on top of standard quill yet.</p>
+      <p id="infop3">Please submit bugs or outright broken things to ThisCatLikesCrypto/Website.</p>
+      <a style="font-size: 12px; color: lime;" href="test.html">demo of the converter (added only a very basic stylesheet)</a>
+    </div>
+    <div id="htmlout">
+      <h1>HTML converted text</h1>
+      <code id="convertedhtml"></code>
+    </div>
+  </body>
+</html>

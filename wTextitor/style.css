@@ -1,0 +1,127 @@
+body {
+    background-color: #121212;
+    height: 100vh;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Open Sans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  }
+
+.ql-toolbar .ql-stroke {
+    fill: none;
+    stroke: aqua;
+}
+  
+.ql-toolbar .ql-fill {
+    fill: aqua;
+    stroke: none;
+}
+  
+.ql-toolbar .ql-picker {
+    color: aqua;
+}
+
+.ql-picker-options {
+    background-color: black !important;
+}
+
+#editor {
+    width: 70%;
+    max-height: 80%;
+    float: left;
+}
+
+#toolbar {
+    width: 52%;
+    float: left;
+}
+
+#infobar {
+    float:left;
+}
+
+#charcount {
+    font-size: 15px;
+    text-align: right;
+}
+
+.normalbutton {
+    color: aqua !important;
+    float: right;
+    width: fit-content !important;
+    background: none;
+    padding: 0.5rem;
+    white-space: 0;
+}
+
+.normalbutton:hover {
+    color: black !important;
+    background-color: aqua !important;
+}
+
+#info {
+    text-align: center;
+}
+
+#mainheader {
+    font-family: 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+}
+
+#unfoc {
+    display: none;
+}
+
+.ql-snow{
+    .ql-picker{
+        &.ql-size{
+            .ql-picker-label,
+            .ql-picker-item{
+                &::before{
+                    content: attr(data-value) !important;
+                }
+            }
+        }
+    }
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+  
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+  
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+#htmlout {
+    display: none;
+    max-height: 80%;
+    float: left;
+}
