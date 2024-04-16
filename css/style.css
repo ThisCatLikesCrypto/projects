@@ -6,7 +6,6 @@ body {
     background-image: url('https://wilburwilliams.uk/assets/background.png');
     background-position: center;
     background-size: cover;
-    height: 100vh;
     font-family: 'Calibri', sans-serif;
     padding: 0px 2%;
     color: white;
@@ -16,6 +15,10 @@ body {
 
 a {
     color: lightblue;
+}
+
+img {
+    height: 25vh;
 }
 
 .nav {
