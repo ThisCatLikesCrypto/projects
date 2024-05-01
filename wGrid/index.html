@@ -8,12 +8,13 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <script src="script.js"></script>
+    <script src="https://dev.wilburwilliams.uk/js/grid.js"></script>
     <div id="mainheader">
-        <h1>wGrid v0.1.0a</h1>
+        <h1>wGrid v0.1.1a</h1>
         <h2>Uses the Carbon Intensity API to show grid data</h2>
+        <h3>Yes it looks like shit</h3>
     </div>
-    <div id="overview">
+    <div class="overview">
         <div class="oversection">
             <p class="co2ex">Actual Intensity</p>
             <h3 id="actual" class="co2">Loading...</h3>
@@ -25,6 +26,24 @@
         <div class="oversection">
             <p class="co2ex">Intensity Index</p>
             <h3 id="index" class="co2">Loading...</h3>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="overview">
+        <div class="oversection">
+            <p id="wind"></p>
+            <p id="solar"></p>
+            <p id="hydro"></p>
+        </div>
+        <div class="oversection">
+            <p id="gas"></p>
+            <p id="coal"></p>
+            <p id="other"></p>
+        </div>
+        <div class="oversection">
+            <p id="nuclear"></p>
+            <p id="biomass"></p>
+            <p id="imports"></p>
         </div>
     </div>
 </body>
