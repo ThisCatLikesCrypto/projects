@@ -111,7 +111,7 @@ function dlSave(){
     console.log("dlSave requested");
     let textFile = null;
     const makeTextFile = (text) => {
-      const data = new Blob ([text], { type: 'text/plain', });
+      const data = new Blob ([text], { type: 'text/json', });
       if (textFile !== null) {
         window.URL.revokeObjectURL (textFile);
       }
@@ -119,7 +119,7 @@ function dlSave(){
       return textFile;
     };
     const link = document.createElement ('a');
-    link.setAttribute ('download', "texteditSaveFile");
+    link.setAttribute('download', document.getElementById("name").innerHTML + ".wtext");
     link.href = makeTextFile(save(quill));
     try {
         link.click();
