@@ -100,6 +100,7 @@ function saveLocal(){
     try {
         stuff = save(quill);
         localStorage.setItem('storedText', stuff);
+        localStorage.setItem('docTitle', document.getElementById('name').innerHTML);
         console.log("..success!");
     } catch(error) {
         console.log("failed to save to local storage. error: " + error);
@@ -136,6 +137,9 @@ function upSave(){
     input.type = 'file';
     input.onchange = (e) => {
       var file = e.target.files[0];
+      if (file.name.endsWith(".wtext")) {
+        document.getElementById('name').innerHTML = file.name.split(".")[0];
+      }
       var reader = new FileReader();
       reader.readAsText(file, 'UTF-8');
       reader.onload = (readerEvent) => {
@@ -251,11 +255,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
             },
         theme: 'snow'
         });
-
+  
     } catch(error) {
         console.log("quill broke with " + error);
         document.getElementById('infoh1').innerHTML = "quill failed to load.";
-        document.getElementById('infop1').innerHTML = "Please refresh the page. If this this issue persists, please create an issue on https://github.com/ThisCatLikesCrypto/Website (not a link)";
+        document.getElementById('infop1').innerHTML = "Please refresh the page. If this this issue persists, please create an issue on <a href='https://github.com/ThisCatLikesCrypto/projects'>https://github.com/ThisCatLikesCrypto/projects</a>";
         document.getElementById('infop2').innerHTML = "Error is " + error;
         document.getElementById('infop3').innerHTML = "Please remember that this is still in alpha, and all feedback is welcome!";
     }
@@ -264,10 +268,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     try {
         data = JSON.parse(localStorage.getItem('storedText'));
         quill.setContents(data);
+        document.getElementById('name').innerHTML = localStorage.getItem('docTitle');
         console.log("..success!");
         console.log(data);
     } catch(error) {
-        console.log("save failed to load. If this is the first load, ignore this. Otherwise create an issue on https://github.com/ThisCatLikesCrypto/Website" + error);
+        console.log("save failed to load. If this is the first load, ignore this. Otherwise create an issue on https://github.com/ThisCatLikesCrypto/projects" + error);
     }
 
     var change = new Delta();
