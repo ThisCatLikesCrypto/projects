@@ -78,6 +78,7 @@ function focusMode(){
     document.getElementById("info").style.display = "none";
     document.getElementById("unfoc").style.display = "block";
     document.getElementById("foc").style.display = "none";
+    localStorage.setItem('focusMode', true);
 }
 
 function unfocus(){
@@ -86,6 +87,7 @@ function unfocus(){
     document.getElementById("info").style.display = "block";
     document.getElementById("foc").style.display = "block";
     document.getElementById("unfoc").style.display = "none";
+    localStorage.setItem('focusMode', false);
 }
 
 //Save and saveload functions
@@ -279,6 +281,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         quill.on('text-change', function(delta) {
         change = change.compose(delta);
     });
+
+    if (localStorage.getItem('focusMode')){
+        focusMode();
+    }
 
     setInterval(saveLocal, 10000)
     setInterval(countChars, 500);
