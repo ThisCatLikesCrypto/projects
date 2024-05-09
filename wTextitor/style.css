@@ -125,3 +125,16 @@
 a {
     color: lime;
 }
+
+.dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.wws-dropdown-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgb(46, 44, 44) !important;
+}
