@@ -221,6 +221,42 @@ function videoHandler() {
     }
 }
 
+function updateTheme() {
+    themething = getCookie("theme");
+    if (themething === "") {
+        themething = "https://dev.wilburwilliams.uk/css/themes/surface.css"
+    }
+    document.getElementById("them").href = themething;
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function changeTheme(theme) {
+    themething = "https://dev.wilburwilliams.uk/css/themes/" + theme + ".css"
+    document.getElementById("them").href = themething;
+    setCookie("theme", themething, 180);
+}
 
 //Essentially the main function, cuz quill needs the page to be loaded first (ik it's not a function)
 document.addEventListener('DOMContentLoaded', (event) => {
