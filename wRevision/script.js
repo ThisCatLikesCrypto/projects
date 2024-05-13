@@ -1,23 +1,34 @@
+//!TODO (order of priority): 
+//!Add a spaced repetition component using lastRevised and currentKnowledge
+//!Add saving to localStorage
+//!Add sets, including topic attribute to improve spaced repetition
+
 const flashcardsContainer = document.getElementById('flashcardsContainer');
-const addCardBtn = document.getElementById('addCardBtn');
-const exportBtn = document.getElementById('exportBtn');
 const fileInput = document.getElementById('fileInput');
-const toggleStudyModeBtn = document.getElementById('toggleStudyModeBtn');
+const toggleStudyModeBtn = document.getElementById('togglestudy');
 let flashcards = [];
 let studyMode = false;
+var timeInSeconds = 0;
 
-addCardBtn.addEventListener('click', () => {
+function updTime(){
+    timeInSeconds = Date.now() / 1000;
+    console.log("Time has been updated as " + timeInSeconds);
+}
+
+function addCard(){
     const question = prompt('Enter question:');
     const answer = prompt('Enter answer:');
+    let lastRevised = timeInSeconds;
+    let currentKnowledge = 1;
 
     if (question && answer) {
-        const card = { question, answer };
+        const card = { question, answer, lastRevised, currentKnowledge };
         flashcards.push(card);
         renderFlashcards();
     }
-});
+}
 
-exportBtn.addEventListener('click', () => {
+function exportCards(){
     const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(flashcards));
     const downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute('href', dataStr);
@@ -25,10 +36,10 @@ exportBtn.addEventListener('click', () => {
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
     document.body.removeChild(downloadAnchorNode);
-});
+}
 
 
-toggleStudyModeBtn.addEventListener('click', () => {
+function toggleStudy(){
     studyMode = !studyMode;
     toggleStudyModeBtn.textContent = studyMode ? 'Edit Mode' : 'Study Mode';
     if (studyMode) {
@@ -36,7 +47,11 @@ toggleStudyModeBtn.addEventListener('click', () => {
     } else {
         renderFlashcards();
     }
-});
+}
+
+function streamStudy() {
+
+}
 
 function renderFlashcards() {
     flashcardsContainer.innerHTML = '';
@@ -77,12 +92,18 @@ function renderStudyMode() {
 
 function checkAnswer(index) {
     const userAnswer = document.getElementById(`answer${index}`).value.trim().toLowerCase();
-    const correctAnswer = flashcards[index].answer.trim().toLowerCase();
+    let card = flashcards[index];
+    const correctAnswer = card.answer.trim().toLowerCase();
     if (userAnswer === correctAnswer) {
         alert('Correct!');
+        card.currentKnowledge = card.currentKnowledge*1.25;
     } else {
         alert('Incorrect. The correct answer is: ' + flashcards[index].answer);
+        card.currentKnowledge = card.currentKnowledge*0.9;
     }
+    card.lastRevised = timeInSeconds;
+    console.log("Flashcard " + card.question + " revised.");
+    console.log("Current level of knowledge is " + card.currentKnowledge);
 }
 
 
@@ -115,3 +136,13 @@ function upSave(){
         alert("There was an error. Please check console if you can be bothered.");
     }
 }
+
+function spacedRepetition(){
+    console.log("Not implemented");
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+    updTime();
+});
+
+setInterval(updTime, 30000);

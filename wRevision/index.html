@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flashcard Software</title>
     <link rel="stylesheet" href="style.css">
-    <link id="them" rel="stylesheet" href="https://wilburwilliams.uk/css/themes/deep.css">
+    <link id="them" rel="stylesheet" href="https://dev.wilburwilliams.uk/css/themes/deep.css">
     <link rel="stylesheet" href="https://dev.wilburwilliams.uk/css/themes/universal.css">
 </head>
 <body>
     <div class="container">
         <h1>Flashcard Software (shit)</h1>
-        <button id="addCardBtn">Add Flashcard</button>
-        <button id="exportBtn">Export Flashcards</button>
-        <button onclick="upSave()">Upload Flashcards</button>
-        <button id="toggleStudyModeBtn">Study Mode</button>
+        <button onclick="addCard()">Add Flashcard</button>
+        <button onclick="exportCards()">Export Flashcards</button>
+        <button onclick="upSave()">Import Flashcards</button>
+        <button id="togglestudy" onclick="toggleStudy()">Study Mode</button>
         <div id="flashcardsContainer"></div>
     </div>
     <script src="script.js"></script>
