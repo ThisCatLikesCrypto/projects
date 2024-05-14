@@ -4,9 +4,12 @@
 //!Add sets, including topic attribute to improve spaced repetition
 
 const flashcardsContainer = document.getElementById('flashcardsContainer');
+const stream = document.getElementById('streamRevise');
+const streamContainer = document.getElementById('streamContainer');
 const fileInput = document.getElementById('fileInput');
 const toggleStudyModeBtn = document.getElementById('togglestudy');
 let flashcards = [];
+let indexes = [];
 let studyMode = false;
 var timeInSeconds = 0;
 
@@ -50,7 +53,16 @@ function toggleStudy(){
 }
 
 function streamStudy() {
+    document.getElementById('main').style.display = 'none';
+    document.getElementById('streamRevise').style.display = 'block';
+    renderStudyMode(true);
+}
 
+function checkAll() {
+    console.log(flashcards);
+    flashcards.forEach((index) => {
+        checkAnswer(index);
+    })
 }
 
 function renderFlashcards() {
@@ -76,7 +88,8 @@ function deleteCard(index) {
     }
 }
 
-function renderStudyMode() {
+function renderStudyMode(streamMode=false) {
+    streamContainer.innerHTML = '';
     flashcardsContainer.innerHTML = '';
     flashcards.forEach((card, index) => {
         const cardDiv = document.createElement('div');
@@ -84,9 +97,12 @@ function renderStudyMode() {
         cardDiv.innerHTML = `
             <p><strong>Question:</strong> ${card.question}</p>
             <input class="wws-inputBox" type="text" id="answer${index}" placeholder="Type your answer">
-            <button onclick="checkAnswer(${index})">Check Answer</button>
         `;
-        flashcardsContainer.appendChild(cardDiv);
+        if (streamMode) {
+            stream.appendChild(cardDiv);
+        } else {
+            flashcardsContainer.appendChild(cardDiv);
+        }
     });
 }
 
@@ -135,10 +151,6 @@ function upSave(){
         console.log("fuck you :D " + error);
         alert("There was an error. Please check console if you can be bothered.");
     }
-}
-
-function spacedRepetition(){
-    console.log("Not implemented");
 }
 
 document.addEventListener('DOMContentLoaded', function(){
