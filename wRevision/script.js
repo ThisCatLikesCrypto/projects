@@ -94,10 +94,18 @@ function renderStudyMode(streamMode=false) {
     flashcards.forEach((card, index) => {
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('card');
-        cardDiv.innerHTML = `
+        if (streamMode){
+            cardDiv.innerHTML = `
+                <p><strong>Question:</strong> ${card.question}</p>
+                <input class="wws-inputBox" type="text" id="answer${index}" placeholder="Type your answer">
+            `;
+        } else {
+            cardDiv.innerHTML = `
             <p><strong>Question:</strong> ${card.question}</p>
             <input class="wws-inputBox" type="text" id="answer${index}" placeholder="Type your answer">
+            <button onclick="checkAnswer(${index})">Check Answer</button>
         `;
+        }
         if (streamMode) {
             stream.appendChild(cardDiv);
         } else {
