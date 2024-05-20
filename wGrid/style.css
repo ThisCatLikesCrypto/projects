@@ -1,3 +1,5 @@
+@import url("https://dev.wilburwilliams.uk/fonts/redditsans.css");
+
 body {
     background-color: #121212;
     height: 100vh;
@@ -19,7 +21,7 @@ a {
 
 #mainheader {
     font-family: 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
-    text-align: left;
+    text-align: center;
 }
 
 #mainheader h1 {
@@ -39,7 +41,6 @@ a {
 }
 
 .oversection {
-    background-color: rgb(46, 41, 41);
     padding: 5px;
     max-width: 15%;
 }
@@ -48,4 +49,31 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: right;
+}
+
+#generationChart {
+    display: flex;
+    float: left;
+}
+
+#everything {
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: rgb(32, 30, 30);
+}
+
+.widget {
+    background-color: rgb(46, 41, 41);
+    padding: 5px;
+}
+
+#nav {
+    text-align: center;
+    font-family: 'Reddit Sans', sans-serif;
+    background-color: rgb(46, 41, 41);
+}
+
+button {
+    background-color: rgb(32, 30, 30);
+    color: aqua;
 }

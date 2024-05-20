@@ -30,6 +30,16 @@ function displayCO2Data(data) {
     document.getElementById('index').innerHTML = index;
 }
 
+function getComplementaryColour(rgb) {
+    // Extract the R, G, and B values from the rgba string
+    const rgbValues = rgb.match(/\d+/g).map(Number);
+    const r = 255 - rgbValues[0];
+    const g = 255 - rgbValues[1];
+    const b = 255 - rgbValues[2];
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+
 function displayGenData(data) {
     const generationMix = data['generationmix'];
 
@@ -39,74 +49,57 @@ function displayGenData(data) {
         generationMap[entry['fuel']] = entry['perc'];
     });
 
-    // Update HTML elements with the generation data
-    document.getElementById('biomass').innerHTML = `Biomass: ${generationMap['biomass']}%`;
-    document.getElementById('coal').innerHTML = `Coal: ${generationMap['coal']}%`;
-    document.getElementById('imports').innerHTML = `Imports: ${generationMap['imports']}%`;
-    document.getElementById('gas').innerHTML = `Gas: ${generationMap['gas']}%`;
-    document.getElementById('nuclear').innerHTML = `Nuclear: ${generationMap['nuclear']}%`;
-    document.getElementById('other').innerHTML = `Other: ${generationMap['other']}%`;
-    document.getElementById('hydro').innerHTML = `Hydro: ${generationMap['hydro']}%`;
-    document.getElementById('solar').innerHTML = `Solar: ${generationMap['solar']}%`;
-    document.getElementById('wind').innerHTML = `Wind: ${generationMap['wind']}%`;
+    // Custom colours for each fuel type
+    const colours = [
+        'rgba(0, 255, 0, 0.6)',      // Biomass - green
+        'rgba(139, 69, 19, 0.6)',    // Coal - brown
+        'rgba(128, 0, 128, 0.6)',    // Imports - purple
+        'rgba(255, 0, 0, 0.6)',      // Gas - red
+        'rgba(255, 165, 0, 0.6)',    // Nuclear - orange
+        'rgba(169, 169, 169, 0.6)',  // Other - dark grey
+        'rgba(173, 216, 230, 0.6)',  // Hydro - light blue
+        '#F6A626',                   // Solar - dark yellow
+        'rgba(255, 255, 255, 0.6)'   // Wind - white
+    ];
+    
+    // Calculate complementary colours for hover labels
+    const hoverTextcolours = colours.map(colour => getComplementaryColour(colour));
 
-    // Create the pie chart
-    const ctx = document.getElementById('generationChart').getContext('2d');
-    const chart = new Chart(ctx, {
+    // Create the pie chart using Plotly
+    const dataPlotly = [{
+        values: Object.values(generationMap),
+        labels: Object.keys(generationMap),
         type: 'pie',
-        data: {
-            labels: Object.keys(generationMap),
-            datasets: [{
-                label: 'Generation Mix',
-                data: Object.values(generationMap),
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(199, 199, 199, 0.2)',
-                    'rgba(83, 102, 255, 0.2)',
-                    'rgba(178, 255, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(199, 199, 199, 1)',
-                    'rgba(83, 102, 255, 1)',
-                    'rgba(178, 255, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
+        marker: {
+            colors: colours
         },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function (context) {
-                            let label = context.label || '';
-                            if (label) {
-                                label += ': ';
-                            }
-                            if (context.parsed !== null) {
-                                label += context.parsed + '%';
-                            }
-                            return label;
-                        }
-                    }
-                }
+        textinfo: 'label+percent',
+        insidetextfont: {
+            color: 'white'
+        },
+        hoverlabel: {
+            font: {
+                color: hoverTextcolours
             }
         }
-    });
+    }];
+    
+    const layout = {
+        title: {
+            text: 'Generation Mix',
+            font: {
+                color: 'white'
+            }
+        },
+        height: 400,
+        width: 500,
+        paper_bgcolor: 'rgb(46, 41, 41)',
+        font: {
+            color: 'white'
+        }
+    };
+
+    Plotly.newPlot('generationChart', dataPlotly, layout);
 }
 
 async function main() {
@@ -117,6 +110,11 @@ async function main() {
     const generationData = await get();
     console.log(generationData);
     displayGenData(generationData);
+}
+
+//Yes you need JS to click links. In fairness, if you visit this without JS the hell are you trying to do?
+function goPlaces(place){
+    window.location.href=place;
 }
 
 main();

@@ -6,47 +6,38 @@
     <title>wGrid</title>
     <link rel="icon" type="image/x-icon" href="https://dev.wilburwilliams.uk/assets/icon.png">
     <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://dev.wilburwilliams.uk/css/themes/universal.css">
 </head>
 <body>
     <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <div id="mainheader">
-        <h1>wGrid v0.2.0a</h1>
-        <h2>Uses the Carbon Intensity API to show grid data</h2>
-        <h3>Yes it looks like shit</h3>
+    <script src="plotly.js"></script>
+    <div id="nav">
+        <p><button onclick="goPlaces('https://wilbur.is-a.dev/')">Home</button> <button onclick="goPlaces('https://wilbur.is-a.dev/wGrid')">wGrid</button> <button onclick="goPlaces('https://wilbur.is-a.dev/')">wTextitor</button></p>
     </div>
-    <canvas style="float: left" id="generationChart" width="400" height="400"></canvas>
-    <div class="overview">
-        <div class="oversection">
-            <p class="co2ex">Actual Intensity</p>
-            <h3 id="actual" class="co2">Loading...</h3>
+    <br>
+    <div id="everything">
+        <div id="mainheader" class="widget">
+            <h1>wGrid v0.2.0a</h1>
+            <h2>Uses the Carbon Intensity API to show grid data</h2>
+            <h3>If it doesn't work, reload</h3>
         </div>
-        <div class="oversection">
-            <p class="co2ex">Forecasted Intensity</p>
-            <h3 id="forecast" class="co2">Loading...</h3>
+        <br>
+        <div class="overview" id="co2data">
+            <div class="oversection widget">
+                <p class="co2ex">Actual Intensity</p>
+                <h3 id="actual" class="co2">Loading...</h3>
+            </div>
+            <div class="oversection widget">
+                <p class="co2ex">Forecasted Intensity</p>
+                <h3 id="forecast" class="co2">Loading...</h3>
+            </div>
+            <div class="oversection widget">
+                <p class="co2ex">Intensity Index</p>
+                <h3 id="index" class="co2">Loading...</h3>
+            </div>
         </div>
-        <div class="oversection">
-            <p class="co2ex">Intensity Index</p>
-            <h3 id="index" class="co2">Loading...</h3>
-        </div>
-    </div>
-    <br><br><br>
-    <div class="overview">
-        <div class="oversection">
-            <p id="wind"></p>
-            <p id="solar"></p>
-            <p id="hydro"></p>
-        </div>
-        <div class="oversection">
-            <p id="gas"></p>
-            <p id="coal"></p>
-            <p id="other"></p>
-        </div>
-        <div class="oversection">
-            <p id="nuclear"></p>
-            <p id="biomass"></p>
-            <p id="imports"></p>
-        </div>
+        <br>
+        <div id="generationChart" style="width:100%;max-width:600px;margin:auto;"></div>
     </div>
 </body>
 </html>
