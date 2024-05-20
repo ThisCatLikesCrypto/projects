@@ -47,7 +47,5 @@ a {
 .overview {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-left: 25%;
-    margin-right: 25%;
+    align-items: right;
 }
