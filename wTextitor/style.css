@@ -1,9 +1,6 @@
 body {
-    background-color: #121212;
     height: 100vh;
-    color: white;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Open Sans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-  }
+}
 
 .ql-toolbar .ql-stroke {
     fill: none;
@@ -127,4 +124,21 @@ body {
     display: none;
     max-height: 80%;
     float: left;
+}
+
+a {
+    color: lime;
+}
+
+.dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.wws-dropdown-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgb(46, 44, 44) !important;
 }

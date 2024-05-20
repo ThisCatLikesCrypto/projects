@@ -78,6 +78,7 @@ function focusMode(){
     document.getElementById("info").style.display = "none";
     document.getElementById("unfoc").style.display = "block";
     document.getElementById("foc").style.display = "none";
+    localStorage.setItem('focusMode', true);
 }
 
 function unfocus(){
@@ -86,6 +87,7 @@ function unfocus(){
     document.getElementById("info").style.display = "block";
     document.getElementById("foc").style.display = "block";
     document.getElementById("unfoc").style.display = "none";
+    localStorage.setItem('focusMode', false);
 }
 
 //Save and saveload functions
@@ -100,6 +102,7 @@ function saveLocal(){
     try {
         stuff = save(quill);
         localStorage.setItem('storedText', stuff);
+        localStorage.setItem('docTitle', document.getElementById('name').innerHTML);
         console.log("..success!");
     } catch(error) {
         console.log("failed to save to local storage. error: " + error);
@@ -111,7 +114,7 @@ function dlSave(){
     console.log("dlSave requested");
     let textFile = null;
     const makeTextFile = (text) => {
-      const data = new Blob ([text], { type: 'text/plain', });
+      const data = new Blob ([text], { type: 'text/json', });
       if (textFile !== null) {
         window.URL.revokeObjectURL (textFile);
       }
@@ -119,7 +122,7 @@ function dlSave(){
       return textFile;
     };
     const link = document.createElement ('a');
-    link.setAttribute ('download', "texteditSaveFile");
+    link.setAttribute('download', document.getElementById("name").innerHTML + ".wtext");
     link.href = makeTextFile(save(quill));
     try {
         link.click();
@@ -136,6 +139,9 @@ function upSave(){
     input.type = 'file';
     input.onchange = (e) => {
       var file = e.target.files[0];
+      if (file.name.endsWith(".wtext")) {
+        document.getElementById('name').innerHTML = file.name.split(".")[0];
+      }
       var reader = new FileReader();
       reader.readAsText(file, 'UTF-8');
       reader.onload = (readerEvent) => {
@@ -215,6 +221,42 @@ function videoHandler() {
     }
 }
 
+function updateTheme() {
+    themething = getCookie("theme");
+    if (themething === "") {
+        themething = "https://dev.wilburwilliams.uk/css/themes/surface.css"
+    }
+    document.getElementById("them").href = themething;
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function changeTheme(theme) {
+    themething = "https://dev.wilburwilliams.uk/css/themes/" + theme + ".css"
+    document.getElementById("them").href = themething;
+    setCookie("theme", themething, 180);
+}
 
 //Essentially the main function, cuz quill needs the page to be loaded first (ik it's not a function)
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -251,11 +293,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
             },
         theme: 'snow'
         });
-
+  
     } catch(error) {
         console.log("quill broke with " + error);
         document.getElementById('infoh1').innerHTML = "quill failed to load.";
-        document.getElementById('infop1').innerHTML = "Please refresh the page. If this this issue persists, please create an issue on https://github.com/ThisCatLikesCrypto/Website (not a link)";
+        document.getElementById('infop1').innerHTML = "Please refresh the page. If this this issue persists, please create an issue on <a href='https://github.com/ThisCatLikesCrypto/projects'>https://github.com/ThisCatLikesCrypto/projects</a>";
         document.getElementById('infop2').innerHTML = "Error is " + error;
         document.getElementById('infop3').innerHTML = "Please remember that this is still in alpha, and all feedback is welcome!";
     }
@@ -264,16 +306,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
     try {
         data = JSON.parse(localStorage.getItem('storedText'));
         quill.setContents(data);
+        document.getElementById('name').innerHTML = localStorage.getItem('docTitle');
         console.log("..success!");
         console.log(data);
     } catch(error) {
-        console.log("save failed to load. If this is the first load, ignore this. Otherwise create an issue on https://github.com/ThisCatLikesCrypto/Website" + error);
+        console.log("save failed to load. If this is the first load, ignore this. Otherwise create an issue on https://github.com/ThisCatLikesCrypto/projects" + error);
     }
 
     var change = new Delta();
         quill.on('text-change', function(delta) {
         change = change.compose(delta);
     });
+
+    if (localStorage.getItem('focusMode')){
+        focusMode();
+    }
 
     setInterval(saveLocal, 10000)
     setInterval(countChars, 500);
