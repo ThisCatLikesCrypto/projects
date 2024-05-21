@@ -1,0 +1,16 @@
+body {
+    background-color: #121212;
+    color: aqua;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Open Sans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    text-align: center;
+}
+
+
+.widget {
+    background-color: rgb(46, 41, 41);
+}
+
+p, a {
+    background-color: rgb(32, 30, 30);
+    color: aqua;
+}

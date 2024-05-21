@@ -1,0 +1,13 @@
+h3 {
+    animation: textRainbow linear 4s infinite;
+}
+
+@keyframes textRainbow {
+    0% {background-color: red;}
+    16% {background-color: orange;}
+    32% {background-color: yellow;}
+    48% {background-image:green;} 
+    64% {background-color: blue;}
+    80% {background-color: purple;}
+    100% {background-color: red;}
+  }
