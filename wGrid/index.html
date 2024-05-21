@@ -12,12 +12,12 @@
     <script src="script.js"></script>
     <script src="plotly.js"></script>
     <div id="nav">
-        <p><button onclick="goPlaces('https://wilbur.is-a.dev/')">Home</button> <button onclick="goPlaces('https://wilbur.is-a.dev/wGrid')">wGrid</button> <button onclick="goPlaces('https://wilbur.is-a.dev/')">wTextitor</button></p>
+        <p><button onclick="goPlaces('https://wilbur.is-a.dev/')">Home</button> <button onclick="goPlaces('https://wilbur.is-a.dev/wGrid')">wGrid</button> <button onclick="goPlaces('https://wilburwilliams.uk/')">wilburwilliams.uk</button></p>
     </div>
     <br>
     <div id="everything">
         <div id="mainheader" class="widget">
-            <h1>wGrid v0.2.0a</h1>
+            <h1>wGrid v0.2.1a</h1>
             <h2>Uses the Carbon Intensity API to show grid data</h2>
             <h3>If it doesn't work, reload</h3>
         </div>
@@ -35,9 +35,33 @@
                 <p class="co2ex">Intensity Index</p>
                 <h3 id="index" class="co2">Loading...</h3>
             </div>
+            <div class="oversection widget">
+                <p class="co2ex">Low Carbon</p>
+                <h3 id="lcpercent" class="co2">Loading...</h3>
+            </div>
         </div>
         <br>
-        <div id="generationChart" style="width:100%;max-width:600px;margin:auto;"></div>
+        <div class="overview" id="generationChart"></div>
+        <br>
+        <div class="overview">
+            <div class="oversection widget">
+                <h3>Renewable</h3>
+                <p id="wind">Loading...</p>
+                <p id="solar"></p>
+                <p id="biomass"></p>
+                <p id="hydro"></p>
+            </div>
+            <div class="oversection widget">
+                <h3>Fossil Fuels</h3>
+                <p id="gas">Loading...</p>
+                <p id="coal"></p>
+            </div>
+            <div class="oversection widget">
+                <h3>Low Carbon</h3>
+                <p id="nuclear">Loading...</p>
+                <p id="imports"></p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
