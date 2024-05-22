@@ -2,7 +2,6 @@
 
 body {
     background-color: #121212;
-    height: 100vh;
     color: aqua;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Open Sans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     text-align: center;
@@ -42,18 +41,17 @@ a {
 
 .oversection {
     padding: 5px;
-    max-width: 15%;
 }
 
 .overview {
     display: flex;
     justify-content: space-between;
-    align-items: right;
 }
 
 #generationChart {
-    display: flex;
-    float: left;
+    float: center;
+    width: 100%;
+    height: 70vh; /* Adjust this as needed */
 }
 
 #everything {
@@ -76,4 +74,12 @@ a {
 button {
     background-color: rgb(32, 30, 30);
     color: aqua;
+}
+
+@media screen and (max-width: 900px){
+    #everything {
+        background-color: rgb(32, 30, 30);
+        margin-left: 0;
+        margin-right: 0;
+    }
 }

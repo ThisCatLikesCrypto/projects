@@ -1,3 +1,5 @@
+let gendata = {};
+
 async function getCO2API() {
     try {
         const response = await fetch('https://api.carbonintensity.org.uk/intensity');
@@ -15,6 +17,7 @@ async function get() {
         const headers = { 'Accept': 'application/json' };
         const response = await fetch('https://api.carbonintensity.org.uk/generation', { method: 'GET', headers: headers });
         const data = await response.json();
+        console.log(data.data);
         return data.data;
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -25,9 +28,17 @@ function displayCO2Data(data) {
     const actual = data['actual'];
     const forecast = data['forecast'];
     const index = data['index'];
-    document.getElementById('actual').innerHTML = actual;
+    if (data[actual]) {
+        document.getElementById('actual').innerHTML = actual;
+    } else {
+        document.getElementById('actual').innerHTML = "No report";
+    }
     document.getElementById('forecast').innerHTML = forecast;
     document.getElementById('index').innerHTML = index;
+}
+
+function getLowCarbonPercent(generationMap){
+    return Math.round(generationMap['biomass'] + generationMap['nuclear'] + generationMap['hydro'] + generationMap['solar'] + generationMap['wind']);
 }
 
 function getComplementaryColour(rgb) {
@@ -49,6 +60,19 @@ function displayGenData(data) {
         generationMap[entry['fuel']] = entry['perc'];
     });
 
+    lcpercent = getLowCarbonPercent(generationMap);
+
+    // Update HTML elements with the generation data
+    document.getElementById('lcpercent').innerHTML = `${lcpercent}%`;
+    document.getElementById('biomass').innerHTML = `Biomass: ${generationMap['biomass']}%`;
+    document.getElementById('coal').innerHTML = `Coal: ${generationMap['coal']}%`;
+    document.getElementById('imports').innerHTML = `Imports: ${generationMap['imports']}%`;
+    document.getElementById('gas').innerHTML = `Gas: ${generationMap['gas']}%`;
+    document.getElementById('nuclear').innerHTML = `Nuclear: ${generationMap['nuclear']}%`;
+    document.getElementById('hydro').innerHTML = `Hydro: ${generationMap['hydro']}%`;
+    document.getElementById('solar').innerHTML = `Solar: ${generationMap['solar']}%`;
+    document.getElementById('wind').innerHTML = `Wind: ${generationMap['wind']}%`;
+
     // Custom colours for each fuel type
     const colours = [
         'rgba(0, 255, 0, 0.6)',      // Biomass - green
@@ -61,9 +85,11 @@ function displayGenData(data) {
         '#F6A626',                   // Solar - dark yellow
         'rgba(255, 255, 255, 0.6)'   // Wind - white
     ];
+
     
     // Calculate complementary colours for hover labels
     const hoverTextcolours = colours.map(colour => getComplementaryColour(colour));
+    console.log(hoverTextcolours);
 
     // Create the pie chart using Plotly
     const dataPlotly = [{
@@ -85,17 +111,19 @@ function displayGenData(data) {
     }];
     
     const layout = {
+        autosize: true,
         title: {
             text: 'Generation Mix',
             font: {
                 color: 'white'
             }
         },
-        height: 400,
-        width: 500,
         paper_bgcolor: 'rgb(46, 41, 41)',
         font: {
             color: 'white'
+        },
+        margin: {
+            b: 150, // Bottom margin
         }
     };
 
@@ -107,8 +135,7 @@ async function main() {
     if (co2Data) {
         displayCO2Data(co2Data['data'][0]['intensity']);
     }
-    const generationData = await get();
-    console.log(generationData);
+    generationData = await get();
     displayGenData(generationData);
 }
 
@@ -117,4 +144,6 @@ function goPlaces(place){
     window.location.href=place;
 }
 
-main();
+document.addEventListener('DOMContentLoaded', main);
+
+window.addEventListener('resize', function(){displayGenData(generationData);});
