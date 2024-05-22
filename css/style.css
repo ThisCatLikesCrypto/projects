@@ -51,6 +51,12 @@ img {
     margin: 0 10%;
 }
 
+.centreplease {
+    display: flex;
+    justify-content: space-between; /* Horizontally center the inner divs */
+    align-items: center; /* Vertically center the inner divs */
+}
+
 .stuff {
     max-width: 40%;
 }
