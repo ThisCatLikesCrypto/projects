@@ -60,9 +60,6 @@ body {
 
 #mainheader {
     font-family: 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
-    position: absolute;
-    top: 0;
-    left: 1;
 }
 
 #unfoc {
