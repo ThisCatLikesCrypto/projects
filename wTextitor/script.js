@@ -1,4 +1,5 @@
 var quill = "justfuckingworkplsplspls"; //Just makes it global, please ignore then content of it
+var lengthalerted = 0;
 
 //Sleep
 function sleep(ms) {
@@ -17,7 +18,7 @@ function clipCopy(stuff) {
 //Make HTML out of quill
 function quilltoHTML(debug=false){
     try {
-    alert("No style is included, and equations are funky but other than that i think this works");
+    saveLocal();
     console.log("Converting quill to HTML..");
     ogcontent = quillGetHTML();
     if(debug){
@@ -66,9 +67,11 @@ function quilltoHTML(debug=false){
 
 //Count characters, runs at 10times/sec
 function countChars() {
-    var divContent = document.getElementById('editor').textContent;
-    var characterCount = divContent.length;
-    document.getElementById('charcount').innerHTML = "&nbsp;&nbsp;Characters: " + characterCount;
+    let titlelength = document.getElementById("name").textContent.length;
+    if (titlelength > 75 && lengthalerted === 0) {
+        alert("Shortern your title length!");
+        lengthalerted++;
+    }
 }
 
 //Intitate focus mode (get rid of the explanation bit and widen the editor)
@@ -306,7 +309,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     try {
         data = JSON.parse(localStorage.getItem('storedText'));
         quill.setContents(data);
-        document.getElementById('name').innerHTML = localStorage.getItem('docTitle');
+        doctitle = localStorage.getItem('docTitle');
+        if (doctitle === "" || null || undefined) {
+            document.getElementById('name').textContent = "Untitled Document";
+        } else {
+            document.getElementById('name').textContent = doctitle;
+        }
         console.log("..success!");
         console.log(data);
     } catch(error) {

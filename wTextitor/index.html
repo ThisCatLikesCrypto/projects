@@ -14,31 +14,41 @@
     <script src="katex/katex.min.js"></script>
     <script src="quill/quill.js"></script>
     <script src="script.js"></script>
-    <div class="wws-dropdown-content dropdown-content">
-      <a href="#" onclick="changeTheme('surface')">Surface Theme</a> |
-      <a href="#" onclick="changeTheme('deep')">Deep Theme</a> |
-      <a href="#" onclick="changeTheme('pitchdark')">Dark Theme</a>
+    <div id="menubar">
+      <div class="dropdown2 ddall">
+        <a href="#">File</a>
+        <div class="dropdown-content" style="display: none;">
+          <a href="#" onclick="saveLocal()">Manually Save</a>
+          <a href="#" onclick="dlSave()">Download</a>
+          <a href="#" onclick="upSave()">Upload</a>
+          <a href="#" onclick="quilltoHTML()">HTML Convert</a>
+        </div>
+      </div>
+      <div class="dropdown ddall">
+        <a href="#">Theme</a>
+        <div class="dropdown-content" style="display: none;">
+          <a href="#" onclick="changeTheme('surface')">Surface Theme</a>
+          <a href="#" onclick="changeTheme('deep')">Deep Theme</a>
+          <a href="#" onclick="changeTheme('pitchdark')">Dark Theme</a>
+        </div>
+      </div>
+      <div class="ddall">
+        <a href="#">Focus</a>
+        <div class="dropdown-content" style="display: none;">
+          <a href="#" id="foc" onclick="focusMode()">Focus Mode</a>
+          <a href="#" id="unfoc" onclick="unfocus()">Remove Focus Mode</a>
+        </div>
+      </div>
+      <h2 id="doctitle"><span id="name" contenteditable="true" style="color: lightcoral;">Untitled Document</span></h2>
     </div>
-    <div style="float: right;">
-      <h2><span id="name" contenteditable="true" style="color: lightcoral;">Untitled Document</span></h2>
-    </div>
-    <br><br><br><br>
-    <button class="normalbutton" onclick="saveLocal()">Save</button>
-    <button class="normalbutton" onclick="dlSave()">Download</button>
-    <button class="normalbutton" onclick="upSave()">Upload</button>
-    <button class="normalbutton" id="foc" onclick="focusMode()">Focus Mode</button>
-    <button class="normalbutton" id="unfoc" onclick="unfocus()">Remove Focus Mode</button>
-    <button class="normalbutton tooltip" onclick="quilltoHTML()">HTML Convert</button>
+    <br>
     <div id="editor">
       <p>Write text here...</p>
     </div>
-    <div id="infobar">
-      <h3 id="charcount">&nbsp;&nbsp;Characters: loading...</h3>
-      <br>
-    </div>
     <br><br><br><br><br>
     <div id="info">
-      <h1 id="mainheader" onclick="alert('Stands for Wilbur Text Editor')">wTextitor v0.2.3c</h1>
+      <br>
+      <h1 id="mainheader" onclick="alert('Stands for Wilbur Text Editor')">wTextitor v0.2.4a</h1>
       <h1 id="infoh1">What is this?</h1>
       <p id="infop1">This is a simple webapp that, using the <a href="https://quilljs.com" onmousewheel="alert('2.0.0-rc.4, if you were wondering')">Quill Library</a> (and <a href="https://katex.org/">KaTeX</a>), allows you to write text, and saves to local storage every ten seconds (trigger a manual save by pressing 'Save' in the toolbar.).</p>
       <p id="infop2">In beta; not much is included on top of standard quill yet.</p>
