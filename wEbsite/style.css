@@ -1,0 +1,187 @@
+body {
+    height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+.ql-toolbar .ql-stroke {
+    fill: none;
+    stroke: aqua;
+}
+  
+.ql-toolbar .ql-fill {
+    fill: aqua;
+    stroke: none;
+}
+  
+.ql-toolbar .ql-picker {
+    color: aqua;
+}
+
+.ql-picker-options {
+    background-color: black !important;
+}
+
+#editor {
+    width: 49.5%;
+    max-height: 86%;
+    float: left;
+    color: white;
+    border-bottom: none;
+}
+
+#toolbar {
+    width: 52%;
+    float: left;
+}
+
+#infobar {
+    float:left;
+}
+
+#charcount {
+    font-size: 15px;
+    text-align: right;
+}
+
+.normalbutton {
+    color: aqua !important;
+    float: right;
+    width: fit-content !important;
+    background: none;
+    padding: 0.5rem;
+    white-space: 0;
+}
+
+.normalbutton:hover {
+    color: black !important;
+    background-color: aqua !important;
+}
+
+#info {
+    max-height: 80%;
+    width: 30%;
+    float: left;
+    display: none !important;
+}
+
+#mainheader {
+    font-family: 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+}
+
+#unfoc {
+    display: none;
+}
+
+.ql-snow{
+    .ql-picker{
+        &.ql-size{
+            .ql-picker-label,
+            .ql-picker-item{
+                &::before{
+                    content: attr(data-value) !important;
+                }
+            }
+        }
+    }
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+  
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+  
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+#htmlout {
+    text-align: left;
+    width: 50%;
+    float: right;
+    border: 1px solid white;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    max-height: 86vh;
+    overflow: scroll;
+    color: lime;
+}
+
+a {
+    color: lime;
+}
+
+.ddall {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(63, 61, 61);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #635b5b;
+    color: black;
+}
+
+.ddall:hover .dropdown-content {
+    display: block !important;
+}
+
+#menubar {
+    display: flex;
+}
+
+#menubar a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 16px;
+    display: block;
+}
+
+#doctitle {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}

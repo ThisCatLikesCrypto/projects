@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wisdev wEbsite</title>
+    <link rel="icon" type="image/x-icon" href="https://dev.wilburwilliams.uk/assets/icon.png">
+    <link href="quill/quill.snow.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link id="them" href="https://dev.wilburwilliams.uk/css/themes/pitchdark.css" rel="stylesheet">
+    <link rel="stylesheet" href="katex/katex.min.css">
+  </head>
+  <body>
+    <script src="katex/katex.min.js"></script>
+    <script src="quill/quill.js"></script>
+    <script src="script.js"></script>
+    <div id="menubar">
+      <div class="dropdown2 ddall">
+        <a href="#">File</a>
+        <div class="dropdown-content" style="display: none;">
+          <a href="#" onclick="saveLocal()">Manually Save</a>
+          <a href="#" onclick="dlSave()">Download</a>
+          <a href="#" onclick="upSave()">Upload</a>
+          <a href="#" onclick="quilltoHTML()">HTML Convert</a>
+        </div>
+      </div>
+      <div class="dropdown ddall">
+        <a href="#">Theme</a>
+        <div class="dropdown-content" style="display: none;">
+          <a href="#" onclick="changeTheme('surface')">Surface Theme</a>
+          <a href="#" onclick="changeTheme('deep')">Deep Theme</a>
+          <a href="#" onclick="changeTheme('pitchdark')">Dark Theme</a>
+        </div>
+      </div>
+      <h2 id="doctitle"><span id="name" contenteditable="true" style="color: lightcoral;">Untitled Document</span></h2>
+    </div>
+    <br>
+    <div id="editor">
+      <p>Write text here...</p>
+    </div>
+    <div id="htmlout">
+      <code id="convertedhtml">Loading conversion...</code>
+    </div>
+    <br><br><br><br><br>
+    <div id="info">
+      <br>
+      <p>fuck</p>
+    </div>
+  </body>
+</html>
