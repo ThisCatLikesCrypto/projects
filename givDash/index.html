@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wisdev givDash</title>
+    <link href="../css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://wilburwilliams.uk/assets/icon.png">
+    <link rel="preload" href="https://wilburwilliams.uk/assets/background.png" as="image">
+</head>
+<body>
+    <h1>GivEnergy API proxy test</h1>
+    <p>This is cuz CORS policy is annoying + don't wanna leak my address xd</p>
+    <p>This runs on <a href="https://workers.dev">Cloudflare Workers</a></p>
+    <p>Solar Generation: <span id="solar"></span>W</p>
+    <p>Consumption: <span id="consumption"></span>W</p>
+    <p>Grid Usage: <span id="grid"></span>W</p>
+    <p>Battery Power: <span id="batt"></span>W</p>
+    <p>Battery Percentage: <span id="battperc"></span>%</p>
+    <div id="dataChart"></div>
+    <script src="giv.js"></script>
+    <script src="../wGrid/plotly.js"></script>
+</body>
+</html>

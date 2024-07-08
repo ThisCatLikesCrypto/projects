@@ -22,10 +22,11 @@ body {
 }
 
 #editor {
-    width: 70%;
+    width: 49.5%;
     max-height: 86%;
     float: left;
     color: white;
+    border-bottom: none;
 }
 
 #toolbar {
@@ -57,7 +58,10 @@ body {
 }
 
 #info {
-    text-align: center;
+    max-height: 80%;
+    width: 30%;
+    float: left;
+    display: none !important;
 }
 
 #mainheader {
@@ -120,9 +124,16 @@ body {
 }
 
 #htmlout {
-    display: none;
-    max-height: 80%;
-    float: left;
+    text-align: left;
+    width: 50%;
+    float: right;
+    border: 1px solid white;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    max-height: 86vh;
+    overflow: scroll;
+    color: lime;
 }
 
 a {

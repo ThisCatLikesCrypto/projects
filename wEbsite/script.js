@@ -58,7 +58,7 @@ function quilltoHTML(debug=false){
     output=brrr;
 
     document.getElementById('convertedhtml').innerText = output;
-    document.getElementById('htmlout').style.display = 'block';
+    document.getElementById('info').style.display = 'block';
     console.log("..success!")
     } catch(error){
         console.log("error "+error);
@@ -72,25 +72,6 @@ function countChars() {
         alert("Shortern your title length!");
         lengthalerted++;
     }
-}
-
-//Intitate focus mode (get rid of the explanation bit and widen the editor)
-function focusMode(){
-    console.log("Focus mode on");
-    document.getElementById("editor").style['width'] = "100%";
-    document.getElementById("info").style.display = "none";
-    document.getElementById("unfoc").style.display = "block";
-    document.getElementById("foc").style.display = "none";
-    localStorage.setItem('focusMode', true);
-}
-
-function unfocus(){
-    console.log("Focus mode off")
-    document.getElementById("editor").style['width'] = "70%";
-    document.getElementById("info").style.display = "block";
-    document.getElementById("foc").style.display = "block";
-    document.getElementById("unfoc").style.display = "none";
-    localStorage.setItem('focusMode', false);
 }
 
 //Save and saveload functions
@@ -326,10 +307,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         change = change.compose(delta);
     });
 
-    if (localStorage.getItem('focusMode')){
-        focusMode();
-    }
-
-    setInterval(saveLocal, 10000)
+    setInterval(saveLocal, 10000);
     setInterval(countChars, 500);
+    setInterval(quilltoHTML, 1000);
 });
